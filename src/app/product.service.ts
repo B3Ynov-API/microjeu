@@ -16,7 +16,11 @@ export class ProductService {
   async getSecondHandProducts() {
     const productsCol = collection(this.db, 'secondHandProducts');
     const productSnapshot = await getDocs(productsCol);
-    const productList = productSnapshot.docs.map(doc => doc.data());
+    const productList = productSnapshot.docs.map(doc => {
+      const data = doc.data();
+      const id = doc.id;
+      return { id, ...data } as SecondHandProduct;
+    });
     return productList;
   }
 }

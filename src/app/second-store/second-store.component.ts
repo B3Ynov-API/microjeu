@@ -16,8 +16,7 @@ export class SecondStoreComponent {
   //Retrive data when the component is initialized
   async ngOnInit() {
     await this.productService.getSecondHandProducts().then((products) => {
-      this.products = <SecondHandProduct[]>products;
-      console.log(this.products);
+      this.products = products;
     });
   }
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "microjeu-8bcd7": {
+      "hosting": {
+        "MicroJeu": [
+          "microjeu-8bcd7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "microjeu-8bcd7"
+  }
+}

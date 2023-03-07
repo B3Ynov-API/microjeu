@@ -1,0 +1,24 @@
+<div *ngIf="products.length !== 0; else elseBlock" class="text-center contents content-center w-3/6">
+  
+    <ul class="flex flex-row justify-around text-center content-center">
+      <li class=" w-1/3 border-2 border-black">
+        nom : 
+      </li>
+      <li class=" w-1/3 border-2 border-black">
+        price : 
+      </li>
+      <li class="w-1/3 border-2 border-black">
+        description : 
+      </li>
+    </ul>
+    <div *ngFor="let item of products">
+      <app-shop-product [product]="item" ></app-shop-product>
+    </div>
+    
+    <app-add-product [truc]="truc"></app-add-product>
+    
+</div>
+
+<ng-template #elseBlock>
+  <p>Il n'y a pas de <strong>PRODUIT</strong> à vendre</p>
+</ng-template>

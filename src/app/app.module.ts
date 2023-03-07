@@ -10,11 +10,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
+import { SecondStoreComponent } from './second-store/second-store.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    SecondStoreComponent,
+    ProductComponent,
     
   ],
   imports: [
@@ -24,7 +29,21 @@ import { NavbarComponent } from './navbar/navbar.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: NavbarComponent
+      },
+      {
+        path: 'secondStore',
+        component: SecondStoreComponent
+      },
+      {
+        path: '**',
+        redirectTo: ''
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

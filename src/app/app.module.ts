@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,19 +12,39 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { MainStoreComponent } from './main-store/main-store.component';
+import { ShopProductComponent } from './shop-product/shop-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { UpdProductComponent } from './upd-product/upd-product.component';
+import { SuppProductComponent } from './supp-product/supp-product.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    MainStoreComponent,
+    ShopProductComponent,
+    AddProductComponent,
+    UpdProductComponent,
     SignUpComponent,
     SignInComponent,
-    
+    SuppProductComponent,
   ],
   imports: [
+    RouterModule.forRoot([
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '/mainStore',
+      },
+      {
+        path: 'mainStore',
+        component: MainStoreComponent,
+      },
+    ]),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

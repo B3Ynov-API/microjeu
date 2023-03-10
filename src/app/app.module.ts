@@ -10,21 +10,29 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    SignUpComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    RouterModule.forRoot([
+      { path: 'signUp', component: SignUpComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

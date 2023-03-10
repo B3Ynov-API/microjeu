@@ -16,13 +16,11 @@ export class MainStoreComponent {
   ngOnInit(): void {
     this.prod.getShopProducts().then((products) => {
       this.products = products;
-      console.log(products);
     });
   }
-  truc=(): void =>{
+  refresh=(): void =>{
     this.prod.getShopProducts().then((products) => {
       this.products = products;
-      console.log(products);
     });
   }
 }

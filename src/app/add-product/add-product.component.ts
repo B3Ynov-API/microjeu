@@ -16,7 +16,7 @@ export class AddProductComponent {
       description: ['', Validators.required],
     });
   }
-  @Input() truc: any;
+  @Input() refresh: any;
   shareForm: FormGroup;
   showModal = false;
   toggleModal(){
@@ -24,8 +24,7 @@ export class AddProductComponent {
   }
   async onSubmit() {
     if (this.shareForm.valid) {
-      console.log(this.shareForm.value);
-      await this.prod.addNewProduct(this.shareForm.value).then(() => {console.log(this.truc())});
+      await this.prod.addNewProduct(this.shareForm.value).then(() => {this.refresh()});
       this.shareForm.reset();
       this.toggleModal();
     } else {

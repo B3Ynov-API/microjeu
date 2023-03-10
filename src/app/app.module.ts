@@ -15,6 +15,8 @@ import { MainStoreComponent } from './main-store/main-store.component';
 import { ShopProductComponent } from './shop-product/shop-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdProductComponent } from './upd-product/upd-product.component';
+import { SuppProductComponent } from './supp-product/supp-product.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainStoreComponent,
     ShopProductComponent,
     AddProductComponent,
+    UpdProductComponent,
+    SuppProductComponent,
   ],
   imports: [
     RouterModule.forRoot([

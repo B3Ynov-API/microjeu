@@ -11,12 +11,15 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
 import { MainStoreComponent } from './main-store/main-store.component';
 import { ShopProductComponent } from './shop-product/shop-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
+import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -27,18 +30,28 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
     ShopProductComponent,
     AddProductComponent,
     UpdProductComponent,
+    SignUpComponent,
+    SignInComponent,
     SuppProductComponent,
   ],
   imports: [
     RouterModule.forRoot([
       {
+        path: 'mainStore',
+        component: MainStoreComponent,
+      },
+      {
+        path: 'signUp',
+        component: SignUpComponent,
+      },
+      {
+        path: 'signIn',
+        component: SignInComponent,
+      },
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: '/mainStore',
-      },
-      {
-        path: 'mainStore',
-        component: MainStoreComponent,
       },
     ]),
     BrowserModule,
@@ -48,9 +61,9 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
-  providers: [],
+  providers: [{ provide: PERSISTENCE, useValue: 'local' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

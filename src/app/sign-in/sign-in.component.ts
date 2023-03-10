@@ -4,24 +4,25 @@ import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.css']
 })
-export class SignUpComponent {
+export class SignInComponent {
 
-  signUpForm: FormGroup;
+  signInForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-    this.signUpForm = this.formBuilder.group({
+    this.signInForm = this.formBuilder.group({
       email: [''],
       password: ['']
     })
   }
 
   onSubmit() {
-    if (this.signUpForm.valid) {
-      this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password);
+    if (this.signInForm.valid) {
+      this.authService.signIn(this.signInForm.value.email, this.signInForm.value.password);
     }
   }
+
 }

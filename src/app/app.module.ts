@@ -13,12 +13,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SignUpComponent,
+    SignInComponent,
     
   ],
   imports: [
@@ -32,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     provideStorage(() => getStorage()),
     RouterModule.forRoot([
       { path: 'signUp', component: SignUpComponent },
+      { path: 'signIn', component: SignInComponent },
     ])
   ],
   providers: [],

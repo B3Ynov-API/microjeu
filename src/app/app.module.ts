@@ -19,6 +19,7 @@ import { ShopProductComponent } from './shop-product/shop-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
+import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -36,13 +37,21 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
   imports: [
     RouterModule.forRoot([
       {
+        path: 'mainStore',
+        component: MainStoreComponent,
+      },
+      {
+        path: 'signUp',
+        component: SignUpComponent,
+      },
+      {
+        path: 'signIn',
+        component: SignInComponent,
+      },
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: '/mainStore',
-      },
-      {
-        path: 'mainStore',
-        component: MainStoreComponent,
       },
     ]),
     BrowserModule,
@@ -53,12 +62,8 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    RouterModule.forRoot([
-      { path: 'signUp', component: SignUpComponent },
-      { path: 'signIn', component: SignInComponent },
-    ])
   ],
-  providers: [],
+  providers: [{ provide: PERSISTENCE, useValue: 'local' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

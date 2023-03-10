@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, ReplaySubject } from 'rxjs';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -14,11 +15,15 @@ export class AddProductComponent {
       name: ['', Validators.required],
       price: ['', Validators.required],
       description: ['', Validators.required],
+      img: ['', Validators.required],
     });
   }
+  
   @Input() refresh: any;
   shareForm: FormGroup;
   showModal = false;
+  base64Output : string="";
+
   toggleModal(){
     this.showModal = !this.showModal;
   }

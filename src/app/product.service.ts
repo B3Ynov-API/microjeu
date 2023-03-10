@@ -24,6 +24,17 @@ export class ProductService {
     return productList;
   }
 
+  async getBroughtProducts() {
+    const productsCol = collection(this.db, 'broughtProducts');
+    const productSnapshot = await getDocs(productsCol);
+    const productList = productSnapshot.docs.map(doc => {
+      const data = doc.data();
+      const id = doc.id;
+      return { id, ...data } as Product;
+    });
+    return productList;
+  }
+
   async addNewProduct(data : any) {
     const productsCol = collection(this.db, 'shopProducts');
     await addDoc(productsCol, data);

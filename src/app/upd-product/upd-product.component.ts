@@ -17,7 +17,7 @@ export class UpdProductComponent {
     });
     }
     @Input() refresh: any;
-    @Input() product: Product= {id: '', name: '', price: 0, description: ''};
+    @Input() product: Product= {id: '', name: '', price: 0, description: '', image: ''};
     shareForm: FormGroup;
     showModal = false;
     toggleModal(){

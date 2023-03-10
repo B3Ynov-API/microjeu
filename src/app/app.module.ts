@@ -17,6 +17,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
+import { BoughtProductComponent } from './bought-product/bought-product.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
     AddProductComponent,
     UpdProductComponent,
     SuppProductComponent,
+    BoughtProductComponent,
   ],
   imports: [
     RouterModule.forRoot([
@@ -39,6 +41,10 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
       {
         path: 'mainStore',
         component: MainStoreComponent,
+      },
+      {
+        path: 'myProducts',
+        component: BoughtProductComponent,
       },
     ]),
     BrowserModule,

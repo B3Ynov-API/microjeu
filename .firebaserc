@@ -1,4 +1,9 @@
 {
+  "projects": {
+    "default": "microjeu-8bcd7",
+    "microjeu": "microjeu-8bcd7",
+    "microjeu-8bcd7": "microjeu-8bcd7"
+  },
   "targets": {
     "microjeu-8bcd7": {
       "hosting": {
@@ -8,7 +13,5 @@
       }
     }
   },
-  "projects": {
-    "default": "microjeu-8bcd7"
-  }
+  "etags": {}
 }

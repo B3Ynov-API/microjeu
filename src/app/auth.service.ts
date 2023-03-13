@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from '@firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { environment } from 'src/environments/environment';
+import { Product } from './product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class AuthService {
   app = initializeApp(environment.firebase);
   auth = getAuth();
 
+  isAuth(): boolean {
+    return this.auth.currentUser ? true : false;
+  }
 
   // Inscription with email/password
   signUp(email: string, password: string) {
@@ -49,5 +53,15 @@ export class AuthService {
     }).catch((error) => {
       // An error happened.
     });
+  }
+
+  isAuthOwner(product: Product): boolean {
+    if (this.auth.currentUser) {
+      if (this.auth.currentUser.uid === product.owner)
+      {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -21,13 +21,13 @@
       </div>
       <!--body-->
       <div class="w-full max-w-xs">
-        <form [formGroup]="shareForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form [formGroup]="formControl" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
               name
             </label>
             <input formControlName="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" >
-            <div *ngIf="shareForm.controls['name'].invalid && (shareForm.controls['name'].dirty)">
+            <div *ngIf="formControl.controls['name'].invalid && (formControl.controls['name'].dirty)">
               <p class="text-red-500 text-xs italic">Remplissez un nom</p>
             </div>
           </div>
@@ -37,7 +37,7 @@
               prix
             </label>
             <input formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" min="0" step="0.01" placeholder="{{product.price}}">
-            <div *ngIf="shareForm.controls['price'].invalid && (shareForm.controls['price'].dirty)">
+            <div *ngIf="formControl.controls['price'].invalid && (formControl.controls['price'].dirty)">
               <p class="text-red-500 text-xs italic">Remplissez un prix</p>
             </div>
           </div>
@@ -46,7 +46,7 @@
               description
             </label>
             <input formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="{{product.description}}">
-            <div *ngIf="shareForm.controls['description'].invalid && (shareForm.controls['description'].dirty)">
+            <div *ngIf="formControl.controls['description'].invalid && (formControl.controls['description'].dirty)">
               <p class="text-red-500 text-xs italic">Remplissez une description</p>
             </div>
           </div>

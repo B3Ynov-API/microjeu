@@ -1,0 +1,39 @@
+<div *ngIf="products.length !== 0; else elseBlock" class="text-center contents content-center w-3/6">
+  
+    <!-- <ul class="flex flex-row justify-around text-center content-center">
+      <li class=" w-1/3 border-2 border-black">
+        nom : 
+      </li>
+      <li class=" w-1/3 border-2 border-black">
+        price : 
+      </li>
+      <li class="w-1/3 border-2 border-black">
+        description : 
+      </li>
+    </ul>
+    <div *ngFor="let item of products">
+      <app-shop-product [product]="item" ></app-shop-product>
+    </div>
+    -->
+    <app-add-product [refresh]="refresh"></app-add-product>
+    <div class="bg-white" *ngIf="products.length !== 0">
+      <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="sr-only">Products</h2>
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div *ngFor="let product of products">
+            <app-shop-product [product]="product"></app-shop-product>
+            <div class="flex content-center justify-center ">
+              <app-upd-product [refresh]="refresh" [product]="product"></app-upd-product>
+              <app-supp-product [refresh]="refresh" [product]="product"></app-supp-product>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+<ng-template #elseBlock>
+  <p>Il n'y a pas de <strong>PRODUIT</strong> à vendre</p>
+</ng-template>

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +11,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { MainStoreComponent } from './main-store/main-store.component';
+import { ShopProductComponent } from './shop-product/shop-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { UpdProductComponent } from './upd-product/upd-product.component';
+import { SuppProductComponent } from './supp-product/supp-product.component';
+import { PERSISTENCE } from '@angular/fire/compat/auth';
+
 import { SecondStoreComponent } from './second-store/second-store.component';
 import { ProductComponent } from './product/product.component';
 
@@ -18,34 +28,50 @@ import { ProductComponent } from './product/product.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    MainStoreComponent,
+    ShopProductComponent,
+    AddProductComponent,
+    UpdProductComponent,
+    SignUpComponent,
+    SignInComponent,
     SecondStoreComponent,
     ProductComponent,
-    
+    SuppProductComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage()),
-    RouterModule.forChild([
+    RouterModule.forRoot([
       {
-        path: '',
-        component: NavbarComponent
+        path: 'mainStore',
+        component: MainStoreComponent,
       },
       {
         path: 'secondStore',
         component: SecondStoreComponent
       },
       {
+        path: 'signUp',
+        component: SignUpComponent,
+      },
+      {
+        path: 'signIn',
+        component: SignInComponent,
+      },
+      {
         path: '**',
-        redirectTo: ''
-      }
-    ])
+        pathMatch: 'full',
+        redirectTo: '/mainStore',
+      },
+    ]),
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
-  providers: [],
+  providers: [{ provide: PERSISTENCE, useValue: 'local' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

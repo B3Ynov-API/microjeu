@@ -17,14 +17,9 @@ export class UpdProductComponent {
     });
     }
     @Input() refresh: any;
-<<<<<<< HEAD
-    @Input() product: Product= {id: '', name: '', price: 0, description: '', image: ''};
-    shareForm: FormGroup;
-=======
     @Input() product: Product= { id: '', name: '', price: 0, description: '', image: '' };
     @Input() isMainShop: boolean = false;
     formControl: FormGroup;
->>>>>>> bec2260c810573dd181948f7253170f63549827e
     showModal = false;
     toggleModal(){
       this.showModal = !this.showModal;

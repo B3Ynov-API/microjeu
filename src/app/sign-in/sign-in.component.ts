@@ -23,10 +23,6 @@ export class SignInComponent {
     })
   }
 
-  ngOnInit() {
-    this.auth.onAuthStateChanged(console.log);
-  }
-
   onSubmit() {
     if (this.signInForm.valid) {
       this.authService.signIn(this.signInForm.value.email, this.signInForm.value.password);

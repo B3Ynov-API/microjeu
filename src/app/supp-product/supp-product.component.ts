@@ -13,11 +13,20 @@ export class SuppProductComponent {
 
   @Input() refresh: any;
   @Input() product: Product= {id: '', name: '', price: 0, description: '', image: ''};
+  @Input() isMainShop: boolean = false;
   showModal = false;
+
   async deleteProd(id: string) {
+    if (this.isMainShop) {
+      await this.prod.deleteProduct(id);
+    }
+    else {
+      await this.prod.deleteSecondHandProduct(id);
+    }
     this.toggleModal();
-    await this.prod.deleteProduct(id).then(() => {this.refresh()});
+    this.refresh();
   }
+
   toggleModal(){
     this.showModal = !this.showModal;
   }

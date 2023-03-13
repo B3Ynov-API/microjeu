@@ -18,6 +18,7 @@ export class MainStoreComponent {
       this.products = products;
     });
   }
+  
   refresh=(): void =>{
     this.prod.getShopProducts().then((products) => {
       this.products = products;

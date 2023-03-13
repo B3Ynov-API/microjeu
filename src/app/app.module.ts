@@ -21,6 +21,8 @@ import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
+import { SecondStoreComponent } from './second-store/second-store.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
     UpdProductComponent,
     SignUpComponent,
     SignInComponent,
+    SecondStoreComponent,
+    ProductComponent,
     SuppProductComponent,
   ],
   imports: [
@@ -39,6 +43,10 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
       {
         path: 'mainStore',
         component: MainStoreComponent,
+      },
+      {
+        path: 'secondStore',
+        component: SecondStoreComponent
       },
       {
         path: 'signUp',

@@ -10,11 +10,32 @@
         </div>
         <div [ngClass]="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
             <ul class="flex flex-col lg:flex-row list-none ml-auto">
-            <li class="nav-item">
-                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-                <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Connexion</span>
-                </a>
-            </li>
+            <div class="flex" *ngIf="!auth.currentUser;else noConnected">
+                <li class="nav-item">
+                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLink="signIn">
+                    <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Connexion</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLink="signUp">
+                    <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Inscription</span>
+                    </a>
+                </li>
+            </div>
+            <ng-template #noConnected>
+                <div class="flex">
+                    <li class="nav-item">
+                        <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLink="profil">
+                        <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Profil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 cursor-pointer" (click)="auth.signOut()">
+                        <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Deconnexion</span>
+                        </a>
+                    </li>
+                </div>
+            </ng-template>
             <li class="nav-item">
                 <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
                 <i class="fab fa-twitter text-lg leading-lg text-white opacity-75"></i><span class="ml-2">March&eacute; Principal</span>

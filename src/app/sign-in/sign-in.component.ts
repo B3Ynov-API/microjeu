@@ -24,7 +24,6 @@ export class SignInComponent {
     })
   }
 
-<<<<<<< HEAD
   ngOnInit() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
@@ -35,8 +34,6 @@ export class SignInComponent {
     });
   }
 
-=======
->>>>>>> 714b6457e01d65194ce73c8bd6890dff1aa9cb10
   onSubmit() {
     if (this.signInForm.valid) {
       this.authService.signIn(this.signInForm.value.email, this.signInForm.value.password);

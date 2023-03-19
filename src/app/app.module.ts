@@ -59,21 +59,6 @@ import { ProductComponent } from './product/product.component';
         component: SignInComponent,
       },
       {
-<<<<<<< HEAD
-        path: 'myProducts',
-        component: BoughtProductComponent,
-      },
-      {
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: '/mainStore',
-      }, 
-=======
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: '/mainStore',
-      },
-      {
         path: 'mainStore',
         component: MainStoreComponent,
       },
@@ -81,7 +66,11 @@ import { ProductComponent } from './product/product.component';
         path: 'myProducts',
         component: BoughtProductComponent,
       },
->>>>>>> 714b6457e01d65194ce73c8bd6890dff1aa9cb10
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '/mainStore',
+      },
     ]),
     BrowserModule,
     AppRoutingModule,

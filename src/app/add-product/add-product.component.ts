@@ -10,28 +10,38 @@ import { ProductService } from '../product.service';
 })
 export class AddProductComponent {
 
-  constructor(private formBuilder: FormBuilder, private prod : ProductService) {
-  this.shareForm = this.formBuilder.group({
+  constructor(private formBuilder: FormBuilder, private prod: ProductService) {
+    this.formControl = this.formBuilder.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
       description: ['', Validators.required],
       img: ['', Validators.required],
     });
   }
-  
+
   @Input() refresh: any;
-  shareForm: FormGroup;
+  @Input() isMainShop: boolean = false;
+  formControl: FormGroup;
   showModal = false;
   base64Output : string="";
 
   toggleModal(){
     this.showModal = !this.showModal;
   }
+
   async onSubmit() {
-    if (this.shareForm.valid) {
-      await this.prod.addNewProduct(this.shareForm.value).then(() => {this.refresh()});
-      this.shareForm.reset();
-      this.toggleModal();
+    if (this.formControl.valid) {
+      if (this.isMainShop) {
+        await this.prod.addNewProduct(this.formControl.value).then(() => { this.refresh() });
+        this.formControl.reset();
+        this.toggleModal();
+      }
+
+      else {
+        await this.prod.addNewSecondHandProduct(this.formControl.value).then(() => { this.refresh() });
+        this.formControl.reset();
+        this.toggleModal();
+      }
     } else {
       console.error('Le formulaire est invalide');
     }

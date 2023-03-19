@@ -22,6 +22,8 @@ import { SuppProductComponent } from './supp-product/supp-product.component';
 import { BoughtProductComponent } from './bought-product/bought-product.component';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
+import { SecondStoreComponent } from './second-store/second-store.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
     UpdProductComponent,
     SignUpComponent,
     SignInComponent,
+    SecondStoreComponent,
+    ProductComponent,
     SuppProductComponent,
     BoughtProductComponent,
   ],
@@ -43,6 +47,10 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
         component: MainStoreComponent,
       },
       {
+        path: 'secondStore',
+        component: SecondStoreComponent
+      },
+      {
         path: 'signUp',
         component: SignUpComponent,
       },
@@ -51,6 +59,7 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
         component: SignInComponent,
       },
       {
+<<<<<<< HEAD
         path: 'myProducts',
         component: BoughtProductComponent,
       },
@@ -59,6 +68,20 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
         pathMatch: 'full',
         redirectTo: '/mainStore',
       }, 
+=======
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: '/mainStore',
+      },
+      {
+        path: 'mainStore',
+        component: MainStoreComponent,
+      },
+      {
+        path: 'myProducts',
+        component: BoughtProductComponent,
+      },
+>>>>>>> 714b6457e01d65194ce73c8bd6890dff1aa9cb10
     ]),
     BrowserModule,
     AppRoutingModule,

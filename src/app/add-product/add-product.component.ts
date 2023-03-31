@@ -15,7 +15,7 @@ export class AddProductComponent {
       name: ['', Validators.required],
       price: ['', Validators.required],
       description: ['', Validators.required],
-      img: ['', Validators.required],
+      image: ['', Validators.required],
     });
   }
 

@@ -29,7 +29,7 @@ export class SignInComponent {
       if (user) {
         this.router.navigate(['/mainStore']);
       } else {
-        console.log("L'utilisateur 'est pas connect");
+        console.log("L'utilisateur n'est pas connecté");
       }
     });
   }

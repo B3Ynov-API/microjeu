@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
   constructor(private authService : AuthService) { }
+
+  username=this.authService.getNickname();
   showMenu = false;
   auth=getAuth();
   toggleNavbar(){

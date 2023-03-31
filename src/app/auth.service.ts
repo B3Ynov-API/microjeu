@@ -20,6 +20,18 @@ export class AuthService {
     return this.auth.currentUser ? true : false;
   }
 
+
+  async getNickname(): Promise<string> {
+    if (this.auth.currentUser) {
+      const docRef = doc(getFirestore(this.app), "users", this.auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()){
+        return docSnap.data()['firstName'];
+      }
+    }
+    return "";
+  }
+
   async isSeller(): Promise<boolean> {
     if (this.auth.currentUser) {
       const docRef = doc(getFirestore(this.app), "users", this.auth.currentUser.uid);

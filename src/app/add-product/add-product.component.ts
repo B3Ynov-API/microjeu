@@ -38,7 +38,7 @@ export class AddProductComponent {
       }
 
       else {
-        await this.prod.addNewSecondHandProduct(this.formControl.value).then(() => { this.refresh() });
+        await this.prod.addNewSecondHandProduct(this.formControl.value).then(() => {  this.refresh() });
         this.formControl.reset();
         this.toggleModal();
       }

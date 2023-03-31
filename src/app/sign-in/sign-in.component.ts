@@ -40,4 +40,7 @@ export class SignInComponent {
     }
   }
 
+  googleButton() {
+    this.authService.signInWithGoogle();
+  }
 }

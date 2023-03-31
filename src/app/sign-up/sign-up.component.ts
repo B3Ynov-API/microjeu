@@ -15,8 +15,8 @@ export class SignUpComponent {
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.signUpForm = this.formBuilder.group({
       email: ['',Validators.required,Validators.email],
-      password: ['',Validators.required,Validators.minLength(8),Validators.maxLength(20),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)],
-      confirmPassword: ['',Validators.required,Validators.minLength(8),Validators.maxLength(20),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)]
+      password: ['',Validators.required,Validators.minLength(8)],
+      confirmPassword: ['',Validators.required,Validators.minLength(8)]
     })
   }
 

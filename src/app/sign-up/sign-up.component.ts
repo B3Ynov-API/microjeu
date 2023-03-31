@@ -14,9 +14,10 @@ export class SignUpComponent {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.signUpForm = this.formBuilder.group({
-      email: ['',Validators.required,Validators.email],
-      password: ['',Validators.required,Validators.minLength(8)],
-      confirmPassword: ['',Validators.required,Validators.minLength(8)]
+      email: ['',[Validators.required,Validators.email]],
+      nickname: ['',[Validators.required]],
+      password: ['',[Validators.required,Validators.minLength(8)]],
+      confirmPassword: ['',[Validators.required,Validators.minLength(8)]]
     })
   }
 
@@ -25,5 +26,9 @@ export class SignUpComponent {
       console.log(this.signUpForm.value);
       this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password);
     }
+  }
+
+  googleButton() {
+    this.authService.signInWithGoogle();
   }
 }

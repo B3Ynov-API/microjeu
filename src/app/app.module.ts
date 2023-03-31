@@ -15,7 +15,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MainStoreComponent } from './main-store/main-store.component';
-import { ShopProductComponent } from './shop-product/shop-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
@@ -30,7 +29,6 @@ import { ProductComponent } from './product/product.component';
     AppComponent,
     NavbarComponent,
     MainStoreComponent,
-    ShopProductComponent,
     AddProductComponent,
     UpdProductComponent,
     SignUpComponent,

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, ReplaySubject } from 'rxjs';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AddProductComponent {
       name: ['', Validators.required],
       price: ['', Validators.required],
       description: ['', Validators.required],
+      image: ['', Validators.required],
     });
   }
 
@@ -21,8 +23,9 @@ export class AddProductComponent {
   @Input() isMainShop: boolean = false;
   formControl: FormGroup;
   showModal = false;
+  base64Output : string="";
 
-  toggleModal() {
+  toggleModal(){
     this.showModal = !this.showModal;
   }
 
@@ -35,7 +38,7 @@ export class AddProductComponent {
       }
 
       else {
-        await this.prod.addNewSecondHandProduct(this.formControl.value).then(() => { this.refresh() });
+        await this.prod.addNewSecondHandProduct(this.formControl.value).then(() => {  this.refresh() });
         this.formControl.reset();
         this.toggleModal();
       }

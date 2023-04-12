@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -14,14 +14,21 @@ export class SignUpComponent {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.signUpForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
+      email: ['',[Validators.required,Validators.email]],
+      nickname: ['',[Validators.required]],
+      password: ['',[Validators.required,Validators.minLength(8)]],
+      confirmPassword: ['',[Validators.required,Validators.minLength(8)]]
     })
   }
 
   onSubmit() {
-    if (this.signUpForm.valid) {
+    if (this.signUpForm.valid && this.signUpForm.value.password === this.signUpForm.value.confirmPassword) {
+      console.log(this.signUpForm.value);
       this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password);
     }
+  }
+
+  googleButton() {
+    this.authService.signInWithGoogle();
   }
 }

@@ -32,19 +32,30 @@ export class ProductService {
     return [];
   }
 
+  async getBroughtProducts() {
+    const productsCol = collection(this.db, 'broughtProducts');
+    const productSnapshot = await getDocs(productsCol);
+    const productList = productSnapshot.docs.map(doc => {
+      const data = doc.data();
+      const id = doc.id;
+      return { id, ...data } as Product;
+    });
+    return productList;
+  }
+
   async addNewProduct(data : any) {
     const productsCol = collection(this.db, 'shopProducts');
-    addDoc(productsCol, data).catch((error) => {console.log(error)});
+    await addDoc(productsCol, data).catch((error) => {console.log(error)});
   }
 
   async deleteProduct(id : string) {
     const productsCol = collection(this.db, 'shopProducts');
-    deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
+    await deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
   }
 
   async updateProduct(id : string, data : any) {
     const productsCol = collection(this.db, 'shopProducts');
-    updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});
+    await updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});
   }
 
   async getSecondHandProducts() {
@@ -66,7 +77,7 @@ export class ProductService {
 
   async addNewSecondHandProduct(data : any) {
     const productsCol = collection(this.db, 'secondHandProducts');
-    addDoc(productsCol, {
+    await addDoc(productsCol, {
       ...data,
       owner: this.auth.currentUser?.uid
     }).catch((error) => {console.log(error)});
@@ -74,11 +85,11 @@ export class ProductService {
 
   async deleteSecondHandProduct(id : string) {
     const productsCol = collection(this.db, 'secondHandProducts');
-    deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
+    await deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
   }
 
   async updateSecondHandProduct(id : string, data : any) {
     const productsCol = collection(this.db, 'secondHandProducts');
-    updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});
+    await updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});
   }
 }

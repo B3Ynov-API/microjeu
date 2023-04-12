@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** */
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -9,7 +9,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
   ],
-  // corePlugins: {
-  //   aspectRatio: false,
-  // },
+  corePlugins: {
+    aspectRatio: false,
+  },
 }

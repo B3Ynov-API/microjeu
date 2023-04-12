@@ -1,7 +1,28 @@
-<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-  <input formControlName="email" name="email" type="email" placeholder="Email" />
-  <input formControlName="password" name="password" type="password" placeholder="Password" />
-  <button type="submit">Valider</button>
-</form>
 
-<button (click)="googleButton()">Se connecter avec Google</button>
+<div class="w-full flex justify-center mt-5">
+  <div class="bg-white rounded-lg shadow relative w-3/6 min-h-fit ">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" action="#">
+      <div class="flex justify-center w-full">
+        <h3 class="text-xl rounded w-3/6 uppercase text-center">Connexion</h3>
+      </div>
+        <div>
+            <label for="email" class="text-sm font-medium text-gray-900 block mb-2" >Your email</label>
+            <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="name@company.com" required>
+        </div>
+        <div>
+            <label for="password" class="text-sm font-medium text-gray-900 block mb-2">Your password</label>
+            <input formControlName="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+        </div>
+        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login to your account</button>
+        <div class="text-sm font-medium text-gray-500">
+            Not registered? <a href="#" class="text-blue-700 hover:underline ">Create account</a>
+        </div>
+        <div class="w-5 font-medium text-gray-500">
+          <svg (click)="googleButton()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48"><defs><path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="b"><use xlink:href="#a" overflow="visible"/></clipPath><path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/>
+          </svg>
+      </div>
+    </form>
+  </div>
+</div>
+
+

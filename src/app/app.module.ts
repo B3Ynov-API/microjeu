@@ -15,10 +15,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MainStoreComponent } from './main-store/main-store.component';
-import { ShopProductComponent } from './shop-product/shop-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdProductComponent } from './upd-product/upd-product.component';
 import { SuppProductComponent } from './supp-product/supp-product.component';
+import { BoughtProductComponent } from './bought-product/bought-product.component';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { SecondStoreComponent } from './second-store/second-store.component';
@@ -29,7 +29,6 @@ import { ProductComponent } from './product/product.component';
     AppComponent,
     NavbarComponent,
     MainStoreComponent,
-    ShopProductComponent,
     AddProductComponent,
     UpdProductComponent,
     SignUpComponent,
@@ -37,6 +36,7 @@ import { ProductComponent } from './product/product.component';
     SecondStoreComponent,
     ProductComponent,
     SuppProductComponent,
+    BoughtProductComponent,
   ],
   imports: [
     RouterModule.forRoot([
@@ -55,6 +55,14 @@ import { ProductComponent } from './product/product.component';
       {
         path: 'signIn',
         component: SignInComponent,
+      },
+      {
+        path: 'mainStore',
+        component: MainStoreComponent,
+      },
+      {
+        path: 'myProducts',
+        component: BoughtProductComponent,
       },
       {
         path: '**',

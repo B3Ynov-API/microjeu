@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { AuthService } from '../auth.service';
 
@@ -16,15 +17,21 @@ export class SignInComponent {
   signInForm: FormGroup;
   auth = getAuth();
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService,private router: Router) {
     this.signInForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
+      email: ['',Validators.required],
+      password: ['',Validators.required]
     })
   }
 
   ngOnInit() {
-    this.auth.onAuthStateChanged(console.log);
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.router.navigate(['/mainStore']);
+      } else {
+        console.log("L'utilisateur n'est pas connecté");
+      }
+    });
   }
 
   onSubmit() {

@@ -1,6 +1,6 @@
 
 <div>
-  <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+  <button class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
     Rajouter un Produit
   </button>
 </div>
@@ -49,6 +49,17 @@
             <div *ngIf="formControl.controls['description'].invalid && (formControl.controls['description'].dirty)">
               <p class="text-red-500 text-xs italic">Remplissez une description</p>
             </div>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-center justify-center w-full">
+              <label for="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                URL de l'image
+              </label>
+              <input formControlName="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="url" placeholder="URL">
+
+              
+            </div> 
+            <img [src]="formControl.controls['image'].value">
           </div>
         </form>
       </div>

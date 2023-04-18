@@ -45,7 +45,11 @@ export class ProductService {
 
   async addNewProduct(data : any) {
     const productsCol = collection(this.db, 'shopProducts');
-    await addDoc(productsCol, data).catch((error) => {console.log(error)});
+    let id: string = "";
+    await addDoc(productsCol, data).then((data) =>{
+      id = data.id;
+    }).catch((error) => {console.log(error)});
+    return id; 
   }
 
   async deleteProduct(id : string) {
@@ -76,11 +80,15 @@ export class ProductService {
   }
 
   async addNewSecondHandProduct(data : any) {
+    let id: string = "";
     const productsCol = collection(this.db, 'secondHandProducts');
     await addDoc(productsCol, {
       ...data,
       owner: this.auth.currentUser?.uid
+    }).then(data => {
+      id = data.id;
     }).catch((error) => {console.log(error)});
+    return id;
   }
 
   async deleteSecondHandProduct(id : string) {

@@ -1,6 +1,7 @@
 import { AuthService } from './../auth.service';
 import { getAuth } from 'firebase/auth';
 import { Component } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +12,17 @@ export class NavbarComponent {
 
   constructor(private authService : AuthService) { }
 
-  username=this.authService.getNickname();
-  showMenu = false;
-  auth=getAuth();
+  username: string="";
+  showMenu : boolean = false;
+  auth : Auth=getAuth();
+
+  ngOnInit(){
+    console.log("username"+this.username);
+    this.authService.getNickname().then((name) => {
+      this.username=name;
+    });
+  }
+
   toggleNavbar(){
     this.showMenu = !this.showMenu;
   }

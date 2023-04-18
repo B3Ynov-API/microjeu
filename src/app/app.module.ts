@@ -23,6 +23,7 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { SecondStoreComponent } from './second-store/second-store.component';
 import { ProductComponent } from './product/product.component';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ProductComponent } from './product/product.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

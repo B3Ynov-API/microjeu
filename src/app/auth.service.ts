@@ -26,6 +26,7 @@ export class AuthService {
       const docRef = doc(getFirestore(this.app), "users", this.auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()){
+        console.log(docSnap.data()['firstName']);
         return docSnap.data()['firstName'];
       }
     }

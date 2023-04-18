@@ -9,12 +9,20 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService: AuthService) { }
 
-  username=this.authService.getNickname();
+  username: string = "";
   showMenu = false;
-  auth=getAuth();
-  toggleNavbar(){
+  auth = getAuth();
+  toggleNavbar() {
     this.showMenu = !this.showMenu;
+  }
+
+  ngOnInit(){
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.authService.getNickname().then((nickname) => {this.username = nickname});
+      }
+    })
   }
 }

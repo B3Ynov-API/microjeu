@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase/auth';
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Product } from '../product.interface';
@@ -12,12 +13,18 @@ export class SecondStoreComponent {
 
   products: Product[] = [];
 
+  isAuth: boolean = false;
+  auth=getAuth();
   constructor(private productService: ProductService, private authService: AuthService) { }
 
   //Retrive data when the component is initialized
   async ngOnInit() {
     await this.productService.getSecondHandProducts().then((products) => {
       this.products = products;
+    });
+
+    this.auth.onAuthStateChanged((user)=>{
+      this.isAuth = user ? true : false;
     });
   }
 
@@ -31,7 +38,5 @@ export class SecondStoreComponent {
     return this.authService.isAuthOwner(product);
   }
 
-  isAuth() {
-    return this.authService.isAuth();
-  }
+
 }

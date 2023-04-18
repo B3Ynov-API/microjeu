@@ -52,14 +52,33 @@
           </div>
           <div class="mb-6">
             <div class="flex items-center justify-center w-full">
-              <label for="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                URL de l'image
-              </label>
-              <input formControlName="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="url" placeholder="URL">
 
+              <input formControlName="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="file" type="file" placeholder="FICHIER" (change)="selectFile($event)">
               
-            </div> 
-            <img [src]="formControl.controls['image'].value">
+            </div>
+            <!-- <div class="flex items-center justify-center w-full">
+              <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              [disabled]="!selectedFiles"
+              (click)="upload()"
+            >
+              Upload
+            </button>
+            </div> -->
+            
+            <!-- <div *ngIf="currentFileUpload" class="relative pt-1">
+              <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                <div
+                  [style.width.%]="percentage"
+                  role="progressbar"
+                  class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 transition-all duration-500"
+                >
+                  <span>{{ percentage }}%</span>
+                </div>
+              </div>
+            </div> -->
+            
+            
           </div>
         </form>
       </div>

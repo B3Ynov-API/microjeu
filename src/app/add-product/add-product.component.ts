@@ -27,7 +27,7 @@ export class AddProductComponent {
   showModal = false;
 
   videoSrc: string="";
-  selectedFiles?: FileList;
+  selectedFile?: File;
   currentFileUpload?: FileStorage;
   percentage = 0;
   toggleModal(){
@@ -44,14 +44,14 @@ export class AddProductComponent {
     }
   }
   selectFile(event: any): void {
-    this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
+    this.selectedFile = event.target.files[0];
   }
   upload(id: string): void {
     
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-      this.selectedFiles = undefined;
+    if (this.selectedFile) {
+      const file: File | null = this.selectedFile;
+      this.selectedFile = undefined;
+      console.log(file);
       if (file) {
         this.currentFileUpload = new FileStorage(file);
         this.uploadService.pushFileToStorage(this.currentFileUpload, id).then(() => {

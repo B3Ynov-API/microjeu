@@ -38,9 +38,11 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       this.authService.signIn(this.signInForm.value.email, this.signInForm.value.password);
     }
+    else (console.log("form non valide"));
   }
 
   googleButton() {
     this.authService.signInWithGoogle();
+
   }
 }

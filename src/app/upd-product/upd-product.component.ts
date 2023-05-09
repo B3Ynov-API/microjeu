@@ -21,16 +21,20 @@ export class UpdProductComponent {
     @Input() isMainShop: boolean = false;
     formControl: FormGroup;
     showModal = false;
+
+    //modal open/close
     toggleModal(){
       this.showModal = !this.showModal;
     }
 
+    //init the form
     ngOnInit(): void {
       this.formControl.controls['name'].setValue(this.product.name);
       this.formControl.controls['price'].setValue(this.product.price);
       this.formControl.controls['description'].setValue(this.product.description);
     }
 
+    //update the product
     async onSubmit() {
       if (this.formControl.valid) {
         if (this.isMainShop) {

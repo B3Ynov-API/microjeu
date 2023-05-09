@@ -15,6 +15,7 @@ export class StorageService {
   app = initializeApp(environment.firebase);
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
 
+  // push file details to database
   async pushFileToStorage(fileStorage: FileStorage, id: string): Promise<Observable<number | undefined>> {
     if (!fileStorage.file) {
       throw new Error('File is null');
@@ -39,10 +40,12 @@ export class StorageService {
   
   
 
+  // Writes the file details to the realtime db
   private saveFileData(fileStorage: FileStorage): void {
     this.db.list(this.basePath).push(fileStorage);
   }
   
+  //recup file details from database
   async getFile(key: string): Promise<FileStorage> {
     const itemRef = this.storage.ref(`${this.basePath}/${key}`);
     const url = await itemRef.getDownloadURL().toPromise();
@@ -57,11 +60,13 @@ export class StorageService {
     return fileStorage;
   }
   
+  //recup files details from database
   getFiles(numberItems: number): AngularFireList<FileStorage> {
     return this.db.list(this.basePath, ref =>
       ref.limitToLast(numberItems));
   }
 
+  //delete file details from database
   deleteFile(fileStorage: FileStorage): void {
     this.deleteFileDatabase(fileStorage.key)
       .then(() => {
@@ -70,10 +75,12 @@ export class StorageService {
       .catch(error => console.log(error));
   }
 
+  //delete file details from database
   private deleteFileDatabase(key: string): Promise<void> {
     return this.db.list(this.basePath).remove(key);
   }
 
+  //delete file details from storage
   private deleteFileStorage(name: string): void {
     const storageRef = this.storage.ref(this.basePath);
     storageRef.child(name).delete();

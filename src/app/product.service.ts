@@ -15,6 +15,7 @@ export class ProductService {
   db = getFirestore(this.app);
   auth = getAuth();
 
+  //get the products from the database
   async getShopProducts() {
     try {
       const productsCol = collection(this.db, 'shopProducts');
@@ -32,17 +33,18 @@ export class ProductService {
     return [];
   }
 
-  async getBroughtProducts() {
-    const productsCol = collection(this.db, 'broughtProducts');
-    const productSnapshot = await getDocs(productsCol);
-    const productList = productSnapshot.docs.map(doc => {
-      const data = doc.data();
-      const id = doc.id;
-      return { id, ...data } as Product;
-    });
-    return productList;
-  }
+  // async getBroughtProducts() {
+  //   const productsCol = collection(this.db, 'broughtProducts');
+  //   const productSnapshot = await getDocs(productsCol);
+  //   const productList = productSnapshot.docs.map(doc => {
+  //     const data = doc.data();
+  //     const id = doc.id;
+  //     return { id, ...data } as Product;
+  //   });
+  //   return productList;
+  // }
 
+  //add new product to the database
   async addNewProduct(data : any) {
     const productsCol = collection(this.db, 'shopProducts');
     let id: string = "";
@@ -52,16 +54,19 @@ export class ProductService {
     return id; 
   }
 
+  //delete product from the database
   async deleteProduct(id : string) {
     const productsCol = collection(this.db, 'shopProducts');
     await deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
   }
 
+  //update product in the database
   async updateProduct(id : string, data : any) {
     const productsCol = collection(this.db, 'shopProducts');
     await updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});
   }
 
+  //get the second hand products from the database
   async getSecondHandProducts() {
     try {
       const productsCol = collection(this.db, 'secondHandProducts');
@@ -79,6 +84,7 @@ export class ProductService {
     return [];
   }
 
+  //add new second hand product to the database
   async addNewSecondHandProduct(data : any) {
     let id: string = "";
     const productsCol = collection(this.db, 'secondHandProducts');
@@ -91,11 +97,13 @@ export class ProductService {
     return id;
   }
 
+  //delete second hand product from the database
   async deleteSecondHandProduct(id : string) {
     const productsCol = collection(this.db, 'secondHandProducts');
     await deleteDoc(doc(productsCol, id)).catch((error) => {console.log(error)});
   }
 
+  //update second hand product in the database
   async updateSecondHandProduct(id : string, data : any) {
     const productsCol = collection(this.db, 'secondHandProducts');
     await updateDoc(doc(productsCol, id), data).catch((error) => {console.log(error)});

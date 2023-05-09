@@ -22,6 +22,7 @@ export class SignUpComponent {
     })
   }
 
+  //user sign up and connected if the form is valid
   onSubmit() {
     if (this.signUpForm.valid && this.signUpForm.value.password === this.signUpForm.value.confirmPassword) {
       console.log(this.signUpForm.value);
@@ -30,6 +31,7 @@ export class SignUpComponent {
     }
   }
 
+  //user connected with google
   googleButton() {
     this.authService.signInWithGoogle();
     this.router.navigate(['/mainStore']);

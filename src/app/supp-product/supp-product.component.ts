@@ -16,6 +16,7 @@ export class SuppProductComponent {
   @Input() isMainShop: boolean = false;
   showModal = false;
 
+  //delete the product
   async deleteProd(id: string) {
     if (this.isMainShop) {
       await this.prod.deleteProduct(id);
@@ -27,6 +28,7 @@ export class SuppProductComponent {
     this.refresh();
   }
 
+  //modal open/close
   toggleModal(){
     this.showModal = !this.showModal;
   }

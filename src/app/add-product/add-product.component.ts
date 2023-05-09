@@ -30,22 +30,27 @@ export class AddProductComponent {
   selectedFile?: File;
   currentFileUpload?: FileStorage;
   percentage = 0;
+
+  //modal open/close
   toggleModal(){
     this.showModal = !this.showModal;
   }
-  onVideoSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.videoSrc = reader.result as string;
-      };
-    }
-  }
+  //take the video file and convert it to base64
+  // onVideoSelected(event: any) {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.videoSrc = reader.result as string;
+  //     };
+  //   }
+  // }
+  //take the image file
   selectFile(event: any): void {
     this.selectedFile = event.target.files[0];
   }
+  //upload the image file to firebase storage
   upload(id: string): void {
     
     if (this.selectedFile) {
@@ -54,6 +59,7 @@ export class AddProductComponent {
       console.log(file);
       if (file) {
         this.currentFileUpload = new FileStorage(file);
+        console.log(this.currentFileUpload);
         this.uploadService.pushFileToStorage(this.currentFileUpload, id).then(() => {
           this.refresh();
         }).catch(
@@ -64,6 +70,7 @@ export class AddProductComponent {
       }
     }
   }
+  //submit the form
   async onSubmit() {
     if (this.formControl.valid) {
       let id: string = "";

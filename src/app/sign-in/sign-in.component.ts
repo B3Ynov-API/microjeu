@@ -24,6 +24,7 @@ export class SignInComponent {
     })
   }
 
+  //Retrive data when the component is initialized
   ngOnInit() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
@@ -33,7 +34,7 @@ export class SignInComponent {
       }
     });
   }
-
+  //user connected if the form is valid
   onSubmit() {
     if (this.signInForm.valid) {
       this.authService.signIn(this.signInForm.value.email, this.signInForm.value.password);
@@ -41,6 +42,7 @@ export class SignInComponent {
     else (console.log("form non valide"));
   }
 
+  //user connected with google
   googleButton() {
     this.authService.signInWithGoogle();
 

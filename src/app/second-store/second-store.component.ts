@@ -28,12 +28,14 @@ export class SecondStoreComponent {
     });
   }
 
+  //rafraichit la page
   refresh=(): void =>{
     this.productService.getSecondHandProducts().then((products) => {
       this.products = products;
     });
   }
 
+  //Delete a product
   isAuthOwner(product: Product): boolean {
     return this.authService.isAuthOwner(product);
   }

@@ -17,6 +17,7 @@ export class MainStoreComponent {
 
   constructor(private prod : ProductService, private authService: AuthService) { }
 
+  //Retrive data when the component is initialized
   ngOnInit(): void {
     this.prod.getShopProducts().then((products) => {
       this.products = products;
@@ -28,6 +29,7 @@ export class MainStoreComponent {
     
   }
   
+  //rafraichit la page
   refresh=(): void =>{
     this.prod.getShopProducts().then((products) => {
       this.products = products;

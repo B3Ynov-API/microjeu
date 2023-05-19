@@ -24,6 +24,7 @@ import { PERSISTENCE } from '@angular/fire/compat/auth';
 import { SecondStoreComponent } from './second-store/second-store.component';
 import { ProductComponent } from './product/product.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { BoughtProductsComponent } from './bought-products/bought-products.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     SecondStoreComponent,
     ProductComponent,
     SuppProductComponent,
+    BoughtProductsComponent,
     // BoughtProductComponent,
   ],
   imports: [

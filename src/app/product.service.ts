@@ -54,6 +54,8 @@ export class ProductService {
     return id; 
   }
 
+  //add product to t
+
   //delete product from the database
   async deleteProduct(id : string) {
     const productsCol = collection(this.db, 'shopProducts');

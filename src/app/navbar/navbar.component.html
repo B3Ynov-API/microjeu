@@ -1,7 +1,8 @@
 <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gradient-to-r from-purple-500 to-pink-500">
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
-            <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
+            <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
+                <img class="w-3/12 " src="assets/microjeu logo (1)-fotor-bg-remover-2023051911054.png">
                 microjeux
             </a>
             <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" (click)="toggleNavbar()">
@@ -14,7 +15,7 @@
         </div>
         <div [ngClass]="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
             <ul class="flex flex-col lg:flex-row list-none ml-auto">
-            <div class="flex" *ngIf="!auth.currentUser;else noConnected">
+            <div class="flex" *ngIf="!auth.currentUser;else connected">
                 <li class="nav-item">
                     <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLink="signIn">
                     <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Connexion</span>
@@ -25,8 +26,9 @@
                     <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Inscription</span>
                     </a>
                 </li>
+
             </div>
-            <ng-template #noConnected>
+            <ng-template #connected>
                 <div class="flex">
                     <li class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white" hidden>
@@ -36,6 +38,11 @@
                     <li class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 cursor-pointer" (click)="auth.signOut()">
                         <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Deconnexion</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLink="signUp">
+                        <i class="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span class="ml-2">Mes Produits</span>
                         </a>
                     </li>
                 </div>

@@ -25,6 +25,7 @@ import { SecondStoreComponent } from './second-store/second-store.component';
 import { ProductComponent } from './product/product.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BoughtProductsComponent } from './bought-products/bought-products.component';
+import { MyProductsComponent } from './my-products/my-products.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { BoughtProductsComponent } from './bought-products/bought-products.compo
     ProductComponent,
     SuppProductComponent,
     BoughtProductsComponent,
+    MyProductsComponent,
     // BoughtProductComponent,
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from '@firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, signInWithPopup } from "firebase/auth";
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
 import { environment } from 'src/environments/environment';
 import { Product } from './product.interface';
 
@@ -20,6 +20,12 @@ export class AuthService {
     return this.auth.currentUser ? true : false;
   }
 
+
+  
+
+  getUserId(): string {
+    return this.auth.currentUser ? this.auth.currentUser.uid : "";
+  }
 
   async getNickname(): Promise<string> {
     if (this.auth.currentUser) {

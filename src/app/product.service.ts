@@ -1,7 +1,7 @@
 import { Product } from './product.interface';
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, runTransaction } from 'firebase/firestore/lite';
 import { environment } from 'src/environments/environment';
 import { getAuth } from 'firebase/auth';
 
@@ -31,6 +31,35 @@ export class ProductService {
       console.log(error);
     }
     return [];
+  }
+
+  //add a product to the owner and increment the number of products
+  addProductToOwner(productId: string, userId: string) {
+    // const userRef = doc(this.db, 'users', userId);
+    // const increment = 1;
+    // updateDoc(userRef, {
+    //   number: increment
+    // });
+    const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId); // Utilisez doc() au lieu de collection()
+
+    return runTransaction(this.db, async (transaction) => {
+      const userDoc = await transaction.get(userRef);
+  
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const increment = userData['number'] || 0;
+        console.log(increment);
+        transaction.update(userRef, {
+          [productId]: true,
+          number: increment + 1
+        });
+      } else {
+        transaction.set(userRef, {
+          [productId]: true,
+          number: 1
+        });
+      }
+    });
   }
 
   // async getBroughtProducts() {

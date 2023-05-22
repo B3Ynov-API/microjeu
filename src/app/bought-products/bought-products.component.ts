@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../product.interface';
+import { ProductService } from '../product.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-bought-products',
@@ -8,13 +10,14 @@ import { Product } from '../product.interface';
 })
 export class BoughtProductsComponent {
 
-  constructor() { }
+  constructor(private prod : ProductService, private auth : AuthService) { }
 
   @Input() product: Product= { id: '', name: '', price: 0, description: '', image: '' };
   showModal = false;
 
   //add the product to the owner
   addProductToOwner(){
+    this.prod.addProductToOwner(this.product.id, this.auth.getUserId());
     this.toggleModal();
   }
 

@@ -20,10 +20,8 @@ export class AuthService {
     return this.auth.currentUser ? true : false;
   }
 
-
-  
-
   getUserId(): string {
+    
     return this.auth.currentUser ? this.auth.currentUser.uid : "";
   }
 

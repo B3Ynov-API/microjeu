@@ -35,17 +35,7 @@ export class AddProductComponent {
   toggleModal(){
     this.showModal = !this.showModal;
   }
-  //take the video file and convert it to base64
-  // onVideoSelected(event: any) {
-  //   const file: File = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       this.videoSrc = reader.result as string;
-  //     };
-  //   }
-  // }
+
   //take the image file
   selectFile(event: any): void {
     this.selectedFile = event.target.files[0];

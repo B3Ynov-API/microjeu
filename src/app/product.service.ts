@@ -1,9 +1,10 @@
 import { Product } from './product.interface';
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, runTransaction } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, runTransaction, getDoc, query, where, FieldPath } from 'firebase/firestore/lite';
 import { environment } from 'src/environments/environment';
 import { getAuth } from 'firebase/auth';
+import { increment } from 'firebase/firestore';
 
 
 @Injectable({
@@ -33,10 +34,13 @@ export class ProductService {
     return [];
   }
 
-  //add a product to the owner and increment the number of products
   addProductToOwner(productId: string, userId: string) {
-    const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId); // Utilisez doc() au lieu de collection()
-
+    const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId);
+  
+    const shopProductsRef = collection(this.db, 'shopProducts');
+    const secondHandProductsRef = collection(this.db, 'secondHandProducts');
+  
+    // In a transaction, add the new product and update the number of products
     return runTransaction(this.db, async (transaction) => {
       const userDoc = await transaction.get(userRef);
   
@@ -45,35 +49,73 @@ export class ProductService {
         const increment = userData['number'] || 0;
         console.log(increment);
         transaction.update(userRef, {
-          [productId]: true,
           number: increment + 1
         });
       } else {
-        transaction.set(userRef, {
-          [productId]: true,
-          number: 1
-        });
+        const shopProductDoc = await transaction.get(doc(shopProductsRef, productId));
+        const secondHandProductDoc = await transaction.get(doc(secondHandProductsRef, productId));
+  
+        if (shopProductDoc.exists()) {
+          const shopProductData = shopProductDoc.data();
+  
+          transaction.set(userRef, {
+            number: 1,
+            product: {
+              collection: 'shopProducts',
+              data: shopProductData
+            }
+          });
+        } else if (secondHandProductDoc.exists()) {
+          const secondHandProductData = secondHandProductDoc.data();
+  
+          transaction.set(userRef, {
+            number: 1,
+            product: {
+              collection: 'secondHandProducts',
+              data: secondHandProductData
+            }
+          });
+        } else {
+          transaction.set(userRef, {
+            number: 1
+          });
+        }
       }
     });
+    
   }
+  
 
-  async getBoughtProducts(userId: string) {
-    // const userRef = doc(this.db, 'users', userId, 'boughtProducts'); // Utilisez doc() au lieu de collection()
+  //recup the products of the owner
+  async getMyProducts(userId: string) {
     try {
       const productsCol = collection(this.db, 'users', userId, 'boughtProducts');
       const productSnapshot = await getDocs(productsCol);
       const productList = productSnapshot.docs.map(doc => {
-        const data = doc.data();
+        const data = doc.data()['product'].data;
         const id = doc.id;
-        return { id, ...data } as Product;
+        const number = doc.data()['number'];
+        return { id,number, ...data } as Product;
       });
       return productList;
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
+  
     return [];
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   //add new product to the database
   async addNewProduct(data : any) {

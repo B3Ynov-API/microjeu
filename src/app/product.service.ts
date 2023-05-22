@@ -35,11 +35,6 @@ export class ProductService {
 
   //add a product to the owner and increment the number of products
   addProductToOwner(productId: string, userId: string) {
-    // const userRef = doc(this.db, 'users', userId);
-    // const increment = 1;
-    // updateDoc(userRef, {
-    //   number: increment
-    // });
     const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId); // Utilisez doc() au lieu de collection()
 
     return runTransaction(this.db, async (transaction) => {
@@ -62,16 +57,23 @@ export class ProductService {
     });
   }
 
-  // async getBroughtProducts() {
-  //   const productsCol = collection(this.db, 'broughtProducts');
-  //   const productSnapshot = await getDocs(productsCol);
-  //   const productList = productSnapshot.docs.map(doc => {
-  //     const data = doc.data();
-  //     const id = doc.id;
-  //     return { id, ...data } as Product;
-  //   });
-  //   return productList;
-  // }
+  async getBoughtProducts(userId: string) {
+    // const userRef = doc(this.db, 'users', userId, 'boughtProducts'); // Utilisez doc() au lieu de collection()
+    try {
+      const productsCol = collection(this.db, 'users', userId, 'boughtProducts');
+      const productSnapshot = await getDocs(productsCol);
+      const productList = productSnapshot.docs.map(doc => {
+        const data = doc.data();
+        const id = doc.id;
+        return { id, ...data } as Product;
+      });
+      return productList;
+    }
+    catch (error) {
+      console.log(error);
+    }
+    return [];
+  }
 
   //add new product to the database
   async addNewProduct(data : any) {

@@ -1,7 +1,7 @@
 import { Product } from './product.interface';
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, runTransaction, getDoc, query, where, FieldPath } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, runTransaction, getDoc, query, where, FieldPath, setDoc } from 'firebase/firestore/lite';
 import { environment } from 'src/environments/environment';
 import { getAuth } from 'firebase/auth';
 import { increment } from 'firebase/firestore';
@@ -82,7 +82,6 @@ export class ProductService {
         }
       }
     });
-    
   }
   
 
@@ -104,18 +103,20 @@ export class ProductService {
   
     return [];
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+  //set the product for sale
+  async sellMyProduct(productId: string, userId: string) {
+    const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId);
+    const userDoc = await getDoc(userRef);
+    let nbProd = 0;
+    let data :any = {};
+    if(userDoc.exists()) {
+      data= userDoc.data();
+      nbProd= userDoc.data()['number'];
+    }
+    await updateDoc(userRef, {number: nbProd - 1}).catch((error) => {console.log(error)});
+    await this.addNewSecondHandProduct(data['product'].data).catch((error) => {console.log(error)});
+  }
 
   //add new product to the database
   async addNewProduct(data : any) {

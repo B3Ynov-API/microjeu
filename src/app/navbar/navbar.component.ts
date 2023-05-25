@@ -17,7 +17,7 @@ export class NavbarComponent {
   auth : Auth=getAuth();
 
   ngOnInit(){
-    console.log("username"+this.username);
+
     this.authService.getNickname().then((name) => {
       this.username=name;
     });

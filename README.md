@@ -1,3 +1,29 @@
+# Install
+
+For install the project use 
+
+```
+
+git clone (https://github.com/B3Ynov-API/microjeu.git)
+
+npm install
+ 
+```
+
+# Users
+
+staff Access:
+
+id: admin2@admin.fr
+mdp: password
+
+user Access:
+
+You can create your account with sign in page ("inscription");
+id: tugrp@example.com
+mdp: Mxample1
+
+
 # MicroJeu
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.

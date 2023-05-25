@@ -3,6 +3,7 @@ import { ProductService } from '../product.service';
 import { AuthService } from '../auth.service';
 import { Product } from '../product.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ref } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-sell-my-product',
@@ -17,6 +18,7 @@ export class SellMyProductComponent {
   }); }
 
   @Input() product: Product= { id: '', name: '', price: 0, description: '', image: '' };
+  @Input() refresh: any;
   showModal = false;
   formControl: FormGroup;
 
@@ -31,6 +33,7 @@ export class SellMyProductComponent {
     if (this.formControl.valid) {
       this.prod.sellMyProduct(this.product.id, this.auth.getUserId());
       this.toggleModal();
+      this.refresh();
     }
     else{
       console.error('Le formulaire est invalide');

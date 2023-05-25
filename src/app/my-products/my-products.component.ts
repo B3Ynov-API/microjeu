@@ -13,9 +13,7 @@ export class MyProductsComponent {
   products: any[] = [];
   //Retrive data when the component is initialized
   async ngOnInit(): Promise<void> {
-    console.log("MyProducts");
-    console.log(await this.auth.getUserId());
-    this.prod.getMyProducts(await this.auth.getUserId()).then((products) => {
+    await this.prod.getMyProducts(this.auth.getUserId()).then((products) => {
       this.products = products;
     });    
   }

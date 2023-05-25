@@ -4,11 +4,8 @@
             <h2 class="sr-only">Mes Produits</h2>
             <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 <div *ngFor="let product of products">
-                    <app-product [product]="product"></app-product>
-                    x{{product.number}}
-                    <app-upd-product [refresh]="refresh" [product]="product" [isMainShop]="true"></app-upd-product>
-                    <app-supp-product [refresh]="refresh" [product]="product" [isMainShop]="true"></app-supp-product>
-                    <app-sell-my-product [product]="product"></app-sell-my-product>
+                    <app-product [myProduct]="1" [product]="product"></app-product>
+                    <app-sell-my-product [refresh]="refresh" [product]="product"></app-sell-my-product>
                 </div>
             </div>
         </div>

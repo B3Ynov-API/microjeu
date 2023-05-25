@@ -34,6 +34,7 @@ export class ProductService {
     return [];
   }
 
+  //add the product to the owner/buy a product
   addProductToOwner(productId: string, userId: string) {
     const userRef = doc(this.db, 'users', userId, 'boughtProducts', productId);
   
@@ -47,9 +48,11 @@ export class ProductService {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         const increment = userData['number'] || 0;
+        const owner = userData['product'].data.owner;
         console.log(increment);
         transaction.update(userRef, {
-          number: increment + 1
+          number: increment + 1,
+          owner: owner
         });
       } else {
         const shopProductDoc = await transaction.get(doc(shopProductsRef, productId));
@@ -72,7 +75,7 @@ export class ProductService {
             number: 1,
             product: {
               collection: 'secondHandProducts',
-              data: secondHandProductData
+              data: secondHandProductData,
             }
           });
         } else {
@@ -112,9 +115,11 @@ export class ProductService {
     let data :any = {};
     if(userDoc.exists()) {
       data= userDoc.data();
+      data['product'].data.id = productId;
+      console.log(data);
       nbProd= userDoc.data()['number'];
     }
-    await updateDoc(userRef, {number: nbProd - 1}).catch((error) => {console.log(error)});
+    // await updateDoc(userRef, {number: nbProd - 1}).catch((error) => {console.log(error)});
     await this.addNewSecondHandProduct(data['product'].data).catch((error) => {console.log(error)});
   }
 
@@ -163,10 +168,12 @@ export class ProductService {
   //add new second hand product to the database
   async addNewSecondHandProduct(data : any) {
     let id: string = "";
+    console.log(this.auth.currentUser?.uid)
     const productsCol = collection(this.db, 'secondHandProducts');
     await addDoc(productsCol, {
       ...data,
       owner: this.auth.currentUser?.uid
+      
     }).then(data => {
       id = data.id;
     }).catch((error) => {console.log(error)});

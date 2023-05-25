@@ -7,4 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductComponent {
   @Input() product: any;
+  @Input() myProduct: any;
+
+  isMine: boolean=false;
+  ngOnInit(){
+    if(this.myProduct){
+      this.isMine=true;
+    }
+  }
 }

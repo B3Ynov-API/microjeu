@@ -1,68 +1,67 @@
 
 <div>
-    <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
-      Modifier un Produit
+    <button class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+      VENDRE
     </button>
-  </div>
-  <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-    <div class="relative w-auto my-6 mx-auto max-w-6xl">
-      <!--content-->
-      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-        <!--header-->
-        <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-          <h3 class="text-3xl font-semibold">
-            vendre un produit
-          </h3>
-          <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
-            <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-              ×
-            </span>
-          </button>
-        </div>
-        <!--body-->
-        <div class="w-full max-w-xs">
-          <form [formGroup]="formControl" (ngSubmit)="sellMyProduct()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-              <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
-                name
-              </label>
-              <input formControlName="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" >
-              <div *ngIf="formControl.controls['name'].invalid && (formControl.controls['name'].dirty)">
-                <p class="text-red-500 text-xs italic">Remplissez un nom</p>
-              </div>
-            </div>
-            
-            <div class="mb-6">
-              <label for="price" class="block text-gray-700 text-sm font-bold mb-2" >
-                prix
-              </label>
-              <input formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" min="0" step="0.01" placeholder="{{product.price}}">
-              <div *ngIf="formControl.controls['price'].invalid && (formControl.controls['price'].dirty)">
-                <p class="text-red-500 text-xs italic">Remplissez un prix</p>
-              </div>
-            </div>
-            <div class="mb-6">
-              <label for="descripion" class="block text-gray-700 text-sm font-bold mb-2">
-                description
-              </label>
-              <input formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="{{product.description}}">
-              <div *ngIf="formControl.controls['description'].invalid && (formControl.controls['description'].dirty)">
-                <p class="text-red-500 text-xs italic">Remplissez une description</p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!--footer-->
-        <div class="flex items-center justify-end p-6 ">
-          <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
-            Close
-          </button>
-          <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="sellMyProduct()">
-            Save Changes
-          </button>
-        </div>
-      </div>
+</div>
+<div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+<div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+    <!--header-->
+    <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+        <h3 class="text-3xl font-semibold">
+        vendre un produit
+        </h3>
+        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+        <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+            ×
+        </span>
+        </button>
     </div>
-  </div>
-  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
-  
+    <!--body-->
+    <div class="w-full max-w-xs">
+        <form [formGroup]="formControl" (ngSubmit)="sellMyProduct()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
+            name
+            </label>
+            <input formControlName="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" >
+            <div *ngIf="formControl.controls['name'].invalid && (formControl.controls['name'].dirty)">
+            <p class="text-red-500 text-xs italic">Remplissez un nom</p>
+            </div>
+        </div>
+        
+        <div class="mb-6">
+            <label for="price" class="block text-gray-700 text-sm font-bold mb-2" >
+            prix
+            </label>
+            <input formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" min="0" step="0.01" placeholder="{{product.price}}">
+            <div *ngIf="formControl.controls['price'].invalid && (formControl.controls['price'].dirty)">
+            <p class="text-red-500 text-xs italic">Remplissez un prix</p>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="descripion" class="block text-gray-700 text-sm font-bold mb-2">
+            description
+            </label>
+            <input formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="{{product.description}}">
+            <div *ngIf="formControl.controls['description'].invalid && (formControl.controls['description'].dirty)">
+            <p class="text-red-500 text-xs italic">Remplissez une description</p>
+            </div>
+        </div>
+        </form>
+    </div>
+    <!--footer-->
+    <div class="flex items-center justify-end p-6 ">
+        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+        Close
+        </button>
+        <button class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="sellMyProduct()">
+        Save Changes
+        </button>
+    </div>
+    </div>
+</div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

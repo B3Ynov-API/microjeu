@@ -26,6 +26,7 @@ import { ProductComponent } from './product/product.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BoughtProductsComponent } from './bought-products/bought-products.component';
 import { MyProductsComponent } from './my-products/my-products.component';
+import { SellMyProductComponent } from './sell-my-product/sell-my-product.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
     SuppProductComponent,
     BoughtProductsComponent,
     MyProductsComponent,
+    SellMyProductComponent,
     // BoughtProductComponent,
   ],
   imports: [
@@ -65,10 +67,10 @@ import { MyProductsComponent } from './my-products/my-products.component';
         path: 'mainStore',
         component: MainStoreComponent,
       },
-      // {
-      //   path: 'myProducts',
-      //   component: BoughtProductComponent,
-      // },
+      {
+        path: 'myProducts',
+        component: MyProductsComponent,
+      },
       {
         path: '**',
         pathMatch: 'full',
